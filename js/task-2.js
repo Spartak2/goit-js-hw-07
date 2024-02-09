@@ -1,8 +1,6 @@
 "use strict";
 
 const ul = document.querySelector('.gallery');
-const lastItem = document.createElement("li");
-ul.append(lastItem);
 
 const images = [
   {
@@ -31,7 +29,9 @@ const images = [
   },
 ];
 
-function addImagesToGallery() {
+function addImagesToGallery(images) {
+  const fragment = document.createDocumentFragment();
+
   images.forEach(image => {
     const li = document.createElement('li');
     const img = document.createElement('img');
@@ -40,8 +40,10 @@ function addImagesToGallery() {
     img.alt = image.alt;
 
     li.appendChild(img);
-    ul.appendChild(li);
+    fragment.appendChild(li);
   });
+
+  ul.appendChild(fragment);
 }
 
-addImagesToGallery();
+addImagesToGallery(images);
